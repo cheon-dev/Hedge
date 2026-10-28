@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEDGE — Helping Expressions Develop Growth in Effective Writing</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        teal: {
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #34d399 50%, #facc15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 3s infinite ease-in-out;
+        }
+        html[data-theme="dark"] body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .bg-white {
+            background-color: #1e293b;
+        }
+        html[data-theme="dark"] .bg-slate-50 {
+            background-color: #172235;
+        }
+        html[data-theme="dark"] .bg-slate-100 {
+            background-color: #1e293b;
+        }
+        html[data-theme="dark"] .bg-teal-50,
+        html[data-theme="dark"] .bg-teal-50\/50 {
+            background-color: #123b3b;
+        }
+        html[data-theme="dark"] .bg-teal-100,
+        html[data-theme="dark"] .bg-blue-100,
+        html[data-theme="dark"] .bg-purple-100,
+        html[data-theme="dark"] .bg-emerald-100,
+        html[data-theme="dark"] .bg-amber-100,
+        html[data-theme="dark"] .bg-red-100 {
+            background-color: #334155;
+        }
+        html[data-theme="dark"] .text-slate-900 {
+            color: #f1f5f9;
+        }
+        html[data-theme="dark"] .text-slate-800 {
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .text-slate-700,
+        html[data-theme="dark"] .text-slate-600 {
+            color: #cbd5e1;
+        }
+        html[data-theme="dark"] .text-slate-500 {
+            color: #94a3b8;
+        }
+        html[data-theme="dark"] .brand-mark {
+            color: #0f172a;
+        }
+        html[data-theme="dark"] .text-teal-800,
+        html[data-theme="dark"] .text-teal-700,
+        html[data-theme="dark"] .text-blue-800,
+        html[data-theme="dark"] .text-purple-800,
+        html[data-theme="dark"] .text-emerald-800,
+        html[data-theme="dark"] .text-amber-800,
+        html[data-theme="dark"] .text-red-800 {
+            color: #d1d5db;
+        }
+        html[data-theme="dark"] .border-slate-100,
+        html[data-theme="dark"] .border-slate-200,
+        html[data-theme="dark"] .border-slate-300,
+        html[data-theme="dark"] .border-teal-100 {
+            border-color: #334155;
+        }
+        html[data-theme="dark"] .hover\:bg-slate-200:hover {
+            background-color: #334155;
+        }
+        html[data-theme="dark"] select,
+        html[data-theme="dark"] textarea {
+            color-scheme: dark;
+        }
+        html {
+            scroll-behavior: smooth;
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+        body,
+        section,
+        header,
+        footer,
+        .tab-btn,
+        .tab-content,
+        .rounded-2xl,
+        .rounded-3xl {
+            transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+        }
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.35rem 0.7rem 0.35rem 0.5rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        html[data-theme="dark"] .theme-toggle {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(94, 234, 212, 0.4);
+        }
+        .theme-toggle-track {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 44px;
+            height: 24px;
+            border-radius: 9999px;
+            background: rgba(148, 163, 184, 0.5);
+            padding: 3px;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle-thumb {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f8fafc, #dbeafe);
+            color: #0f172a;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+            transform: translateX(0);
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+        html[data-theme="dark"] .theme-toggle-thumb {
+            transform: translateX(20px);
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #111827;
+        }
+        .theme-toggle-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #cbd5e1;
+        }
+        html[data-theme="dark"] .theme-toggle-label {
+            color: #e2e8f0;
+        }
+        #mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(-10px);
+            transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease, padding 0.25s ease;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        #mobile-menu.open {
+            max-height: 420px;
+            opacity: 1;
+            transform: translateY(0);
+            padding-top: 0.5rem;
+            padding-bottom: 1rem;
+        }
+        #mobile-menu-btn i {
+            transition: transform 0.25s ease;
+        }
+        #mobile-menu-btn[aria-expanded="true"] i {
+            transform: rotate(90deg);
+        }
+        @media (max-width: 359px) {
+            .mobile-square-card {
+                padding: 0.5rem;
+            }
+            .mobile-square-card > div:first-child {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+            }
+            .mobile-square-card h3 {
+                font-size: 0.75rem;
+                line-height: 1.15;
+                margin-bottom: 0.25rem;
+            }
+            .mobile-square-card p {
+                font-size: 9px;
+                line-height: 1.1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-teal-500 selection:text-white">
+
+    <!-- HEADER & STICKY NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800 shadow-lg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Branding -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="brand-mark w-11 h-11 bg-gradient-to-tr from-teal-500 to-emerald-400 rounded-xl flex items-center justify-center text-slate-900 font-extrabold text-xl shadow-lg group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-extrabold text-2xl tracking-wider text-white group-hover:text-teal-400 transition-colors">HEDGE</span>
+                        <span class="text-[10px] text-slate-400 tracking-tight font-light hidden sm:block">Academic Writing Precision</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex space-x-1 lg:space-x-2">
+                    <a href="#home" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"><i class="fa-solid fa-house mr-1" aria-hidden="true"></i> Home</a>
+                    <a href="#about" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"><i class="fa-solid fa-book-open mr-1" aria-hidden="true"></i> About</a>
+                    <a href="#lessons" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"><i class="fa-solid fa-book mr-1" aria-hidden="true"></i> Lessons</a>
+                    <a href="#practice" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"><i class="fa-solid fa-pen-to-square mr-1" aria-hidden="true"></i> Practice Hub</a>
+                    <a href="#assessments" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"><i class="fa-solid fa-clipboard-check mr-1" aria-hidden="true"></i> Assessments</a>
+                    <a href="#contact" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"><i class="fa-solid fa-envelope mr-1" aria-hidden="true"></i> Contact</a>
+                </nav>
+
+                <div class="flex items-center gap-2">
+                    <button type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false" class="theme-toggle text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-teal-400">
+                        <span class="theme-toggle-track">
+                            <span class="theme-toggle-thumb"><i class="fa-solid fa-sun text-[9px]" aria-hidden="true"></i></span>
+                        </span>
+                        <span class="theme-toggle-label hidden sm:inline">Light</span>
+                    </button>
+                    <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" class="text-slate-300 hover:text-white p-2 rounded-md hover:bg-slate-800 focus:outline-none lg:hidden">
+                        <i class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="lg:hidden bg-slate-900 border-b border-slate-800 px-4 space-y-1">
+            <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"><i class="fa-solid fa-house mr-2" aria-hidden="true"></i> Home</a>
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"><i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i> About Hedging</a>
+            <a href="#lessons" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"><i class="fa-solid fa-book mr-2" aria-hidden="true"></i> Lessons</a>
+            <a href="#practice" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"><i class="fa-solid fa-pen-to-square mr-2" aria-hidden="true"></i> Practice Hub</a>
+            <a href="#assessments" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"><i class="fa-solid fa-clipboard-check mr-2" aria-hidden="true"></i> Assessments</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"><i class="fa-solid fa-envelope mr-2" aria-hidden="true"></i> Contact</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative bg-slate-950 text-white overflow-hidden py-16 lg:py-24 border-b border-slate-800">
+        <!-- Background Ambient Effects -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 mb-6">
+                    <i class="fa-solid fa-graduation-cap mr-2"></i> Academic Writing Instructional Material
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+                    <span class="gradient-text">HEDGE</span>
+                </h1>
+                <p class="text-xl sm:text-2xl font-serif text-slate-300 italic mb-3">
+                    Helping Expressions Develop Growth in Effective Writing
+                </p>
+                <div class="inline-block bg-slate-900/80 px-6 py-2.5 rounded-2xl border border-slate-800 text-teal-300 font-semibold text-lg sm:text-xl shadow-inner mb-10">
+                    <i class="fa-solid fa-pen-nib mr-2" aria-hidden="true"></i>"Write with Confidence, Not Absolute Certainty"
+                </div>
+            </div>
+
+            <!-- Acronym Breakdown Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 mt-8">
+                <!-- H -->
+                <div class="mobile-square-card aspect-square sm:aspect-auto flex flex-col justify-center bg-slate-900/80 p-3 sm:p-5 rounded-2xl border border-slate-800/80 hover:border-teal-500/50 transition duration-300 shadow-xl group hover:-translate-y-1">
+                    <div class="w-9 h-9 sm:w-12 sm:h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center font-black text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
+                        H
+                    </div>
+                    <h3 class="font-bold text-sm sm:text-lg text-white mb-1 sm:mb-2">Highlighting</h3>
+                    <p class="text-slate-400 text-[10px] sm:text-xs leading-snug sm:leading-relaxed">
+                        Highlighting hedging functions, recognizing when and how to use them appropriately in academic prose.
+                    </p>
+                </div>
+
+                <!-- E -->
+                <div class="mobile-square-card aspect-square sm:aspect-auto flex flex-col justify-center bg-slate-900/80 p-3 sm:p-5 rounded-2xl border border-slate-800/80 hover:border-teal-500/50 transition duration-300 shadow-xl group hover:-translate-y-1">
+                    <div class="w-9 h-9 sm:w-12 sm:h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center font-black text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
+                        E
+                    </div>
+                    <h3 class="font-bold text-sm sm:text-lg text-white mb-1 sm:mb-2">Enhancing</h3>
+                    <p class="text-slate-400 text-[10px] sm:text-xs leading-snug sm:leading-relaxed">
+                        Enhancing clarity, precision, argument strength, and scholarly tone across all writing domains.
+                    </p>
+                </div>
+
+                <!-- D -->
+                <div class="mobile-square-card aspect-square sm:aspect-auto flex flex-col justify-center bg-slate-900/80 p-3 sm:p-5 rounded-2xl border border-slate-800/80 hover:border-teal-500/50 transition duration-300 shadow-xl group hover:-translate-y-1">
+                    <div class="w-9 h-9 sm:w-12 sm:h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center font-black text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
+                        D
+                    </div>
+                    <h3 class="font-bold text-sm sm:text-lg text-white mb-1 sm:mb-2">Developing</h3>
+                    <p class="text-slate-400 text-[10px] sm:text-xs leading-snug sm:leading-relaxed">
+                        Developing caution, nuance, and genuine respect for the limits of available empirical evidence.
+                    </p>
+                </div>
+
+                <!-- G -->
+                <div class="mobile-square-card aspect-square sm:aspect-auto flex flex-col justify-center bg-slate-900/80 p-3 sm:p-5 rounded-2xl border border-slate-800/80 hover:border-teal-500/50 transition duration-300 shadow-xl group hover:-translate-y-1">
+                    <div class="w-9 h-9 sm:w-12 sm:h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center font-black text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
+                        G
+                    </div>
+                    <h3 class="font-bold text-sm sm:text-lg text-white mb-1 sm:mb-2">Guiding</h3>
+                    <p class="text-slate-400 text-[10px] sm:text-xs leading-snug sm:leading-relaxed">
+                        Guiding learners through clear explanations, rich authentic examples, and structured guided practice.
+                    </p>
+                </div>
+
+                <!-- E -->
+                <div class="mobile-square-card aspect-square sm:aspect-auto flex flex-col justify-center bg-slate-900/80 p-3 sm:p-5 rounded-2xl border border-slate-800/80 hover:border-teal-500/50 transition duration-300 shadow-xl group hover:-translate-y-1">
+                    <div class="w-9 h-9 sm:w-12 sm:h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center font-black text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
+                        E
+                    </div>
+                    <h3 class="font-bold text-sm sm:text-lg text-white mb-1 sm:mb-2">Elevating</h3>
+                    <p class="text-slate-400 text-[10px] sm:text-xs leading-snug sm:leading-relaxed">
+                        Elevating writing quality from basic assertion to scholarly and persuasive academic communication.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="mt-12 text-center flex flex-wrap justify-center gap-4">
+                <a href="#lessons" class="px-8 py-3.5 bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 font-bold rounded-xl shadow-lg hover:brightness-110 transition flex items-center">
+                    <i class="fa-solid fa-book-open mr-2"></i> Explore Lessons
+                </a>
+                <a href="#practice" class="px-8 py-3.5 bg-slate-800 text-slate-200 hover:text-white font-semibold rounded-xl border border-slate-700 hover:bg-slate-700 transition flex items-center">
+                    <i class="fa-solid fa-pen-ruler mr-2"></i> Start Practice Hub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT HEDGING SECTION -->
+    <section id="about" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+                    <i class="fa-solid fa-book-open mr-2 text-teal-600" aria-hidden="true"></i>What are Hedging Devices?
+                </h2>
+                <div class="w-20 h-1.5 bg-teal-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6 text-slate-700 leading-relaxed font-normal text-base">
+                    <p class="bg-teal-50/50 p-6 rounded-2xl border border-teal-100 text-slate-800">
+                        <strong class="text-teal-800">Hedging devices</strong> are words, phrases, or expressions that allow writers to express <strong>uncertainty, possibility, probability, or limitation</strong> instead of presenting ideas as absolute, unquestionable facts. They serve as linguistic bridges that connect what writers know to what they cannot yet confirm — helping claims sound reasonable rather than dogmatic, exploratory rather than definitive, and open to discussion rather than closed to debate.
+                    </p>
+                    <blockquote class="border-l-4 border-teal-500 pl-6 italic text-slate-600 my-4 font-serif">
+                        "Any linguistic means used to indicate that a claim is not a certain truth but a plausible one."
+                        <span class="block text-sm font-sans font-semibold text-slate-800 not-italic mt-2">— Hyland (1998)</span>
+                    </blockquote>
+                    <p>
+                        Hedging is <strong>not a sign of weakness, vagueness, or indecision</strong>. On the contrary — hedging demonstrates <strong>intellectual carefulness</strong>. It shows that you understand the boundaries of your evidence, respect the complexity of your topic, and acknowledge that new information may alter current understandings.
+                    </p>
+                </div>
+
+                <!-- Highlight Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 text-slate-700/20 text-9xl font-black select-none pointer-events-none">H</div>
+                    <h3 class="text-xl font-bold text-teal-400 mb-4 flex items-center">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-400"></i> Why Scholars Use Hedging
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-teal-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Avoids unsupportable overgeneralizations.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-teal-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Protects writers from immediate refute if exceptions exist.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-teal-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Invites constructive discourse and reader involvement.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-teal-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Aligns claims precisely with data strength.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LESSONS SECTION -->
+    <section id="lessons" class="py-16 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-teal-600 font-bold uppercase tracking-wider text-xs">Core Curriculum</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mt-1"><i class="fa-solid fa-book-open mr-2 text-teal-600" aria-hidden="true"></i>The 4 Main Categories of Hedging</h2>
+                <p class="text-slate-600 mt-2">Explore the four primary linguistic tools used to refine academic assertions.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" id="category-tabs">
+                <button onclick="switchTab('modal')" id="tab-modal" class="tab-btn active-tab px-5 py-3 rounded-xl font-semibold text-sm transition shadow-sm flex items-center bg-teal-600 text-white">
+                    1. Modal Verbs
+                </button>
+                <button onclick="switchTab('lexical')" id="tab-lexical" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition shadow-sm flex items-center bg-white text-slate-700 hover:bg-slate-200">
+                    2. Lexical Verbs
+                </button>
+                <button onclick="switchTab('adverbs')" id="tab-adverbs" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition shadow-sm flex items-center bg-white text-slate-700 hover:bg-slate-200">
+                    3. Adverbs
+                </button>
+                <button onclick="switchTab('adjectives')" id="tab-adjectives" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition shadow-sm flex items-center bg-white text-slate-700 hover:bg-slate-200">
+                    4. Adjectives
+                </button>
+            </div>
+
+            <!-- Tab Content Container -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 transition-all duration-300">
+                
+                <!-- Tab 1: Modal Verbs -->
+                <div id="content-modal" class="tab-content block">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-teal-100 text-teal-700 rounded-xl font-bold text-xl">1</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">Modal Verbs</h3>
+                            <p class="text-sm text-slate-500">Auxiliary verbs that express degrees of possibility, likelihood, permission, or obligation.</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 mb-6">Modal verbs directly signal how certain you are about what you are saying.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Card May -->
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">may</span>
+                            <p class="text-xs text-slate-500 mb-2 font-medium">Something is possible; evidence points this way but is not conclusive.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"The findings <strong>may</strong> indicate a strong connection between reading frequency and writing confidence."</p>
+                        </div>
+                        <!-- Card Might -->
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">might</span>
+                            <p class="text-xs text-slate-500 mb-2 font-medium">Something is possible but less certain; tentative or remote possibility.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Students who practice daily <strong>might</strong> notice gradual improvements over time."</p>
+                        </div>
+                        <!-- Card Could -->
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">could</span>
+                            <p class="text-xs text-slate-500 mb-2 font-medium">Something is within range of possibility; one potential explanation among several.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Limited exposure to academic texts <strong>could</strong> explain these observed patterns."</p>
+                        </div>
+                        <!-- Card Can -->
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">can</span>
+                            <p class="text-xs text-slate-500 mb-2 font-medium">Something is possible in general; capability or typical occurrence.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Hedging <strong>can</strong> help writers avoid sounding overly confident or dismissive of opposing views."</p>
+                        </div>
+                        <!-- Card Should -->
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">should</span>
+                            <p class="text-xs text-slate-500 mb-2 font-medium">Something is expected or reasonable based on available information.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Consistent practice <strong>should</strong> lead to greater familiarity with these expressions."</p>
+                        </div>
+                        <!-- Card Would -->
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">would</span>
+                            <p class="text-xs text-slate-500 mb-2 font-medium">Something is likely under specific conditions; a reasonable assumption.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"More targeted instruction <strong>would</strong> likely improve students’ confidence in using these devices."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Lexical Verbs -->
+                <div id="content-lexical" class="tab-content hidden">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-teal-100 text-teal-700 rounded-xl font-bold text-xl">2</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">Lexical Verbs</h3>
+                            <p class="text-sm text-slate-500">Full verbs carrying independent meaning to report findings cautiously.</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 mb-6">Lexical verbs allow writers to interpret data so words reflect what evidence suggests rather than what they insist is true.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">suggest</span>
+                            <p class="text-xs text-slate-500 mb-2">Evidence points toward this conclusion but does not prove it completely.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"The survey results <strong>suggest</strong> that most students struggle with precision."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">indicate</span>
+                            <p class="text-xs text-slate-500 mb-2">Clear observable pattern; stronger than suggest but cautious.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"The analysis <strong>indicates</strong> a noticeable relationship between reading habits and vocabulary."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">appear</span>
+                            <p class="text-xs text-slate-500 mb-2">Based on what is currently visible; may change with more info.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Students <strong>appear</strong> to understand basic hedging forms but apply them inconsistently."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">seem</span>
+                            <p class="text-xs text-slate-500 mb-2">Gives the impression; subjective observation softened.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"It <strong>seems</strong> that explicit instruction makes a significant difference."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">imply</span>
+                            <p class="text-xs text-slate-500 mb-2">Logically follows without being stated directly.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"These improvements <strong>imply</strong> that the intervention had a measurable positive effect."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-teal-400 transition">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">tend to</span>
+                            <p class="text-xs text-slate-500 mb-2">Describes what generally happens without claiming it happens every time.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Advanced writers <strong>tend to</strong> use a wider variety of hedging forms."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Adverbs -->
+                <div id="content-adverbs" class="tab-content hidden">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-teal-100 text-teal-700 rounded-xl font-bold text-xl">3</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">Adverbs</h3>
+                            <p class="text-sm text-slate-500">Flexible modifiers adjusting how broadly a claim applies and how certain you feel.</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 mb-6">Adverbs are among the most flexible and precise hedging tools available in academic prose.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">generally</span>
+                            <p class="text-xs text-slate-500 mb-2">True in most cases; widely applicable.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"<strong>Generally</strong>, students who receive feedback improve faster."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">typically</span>
+                            <p class="text-xs text-slate-500 mb-2">Characteristic of most situations.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"Effective writing <strong>typically</strong> includes a balance of caution."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">often</span>
+                            <p class="text-xs text-slate-500 mb-2">Happens frequently but not always.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"Students <strong>often</strong> rely on familiar expressions."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">probably</span>
+                            <p class="text-xs text-slate-500 mb-2">Highly likely; stronger than possibly.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"Regular practice is <strong>probably</strong> the single most important factor."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">possibly</span>
+                            <p class="text-xs text-slate-500 mb-2">Within possibility; one reasonable option.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"Limited class time is <strong>possibly</strong> one reason."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">perhaps</span>
+                            <p class="text-xs text-slate-500 mb-2">Acknowledging uncertainty or alternatives.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"<strong>Perhaps</strong> the greatest benefit is respect for readers."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">likely</span>
+                            <p class="text-xs text-slate-500 mb-2">Expected or probable based on evidence.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"Further research will <strong>likely</strong> reveal patterns."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">potentially</span>
+                            <p class="text-xs text-slate-500 mb-2">Capable of happening; possible in future.</p>
+                            <p class="text-xs font-serif italic text-slate-800 border-l-2 border-teal-500 pl-2">"These findings have <strong>potentially</strong> important implications."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Adjectives -->
+                <div id="content-adjectives" class="tab-content hidden">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-teal-100 text-teal-700 rounded-xl font-bold text-xl">4</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">Adjectives</h3>
+                            <p class="text-sm text-slate-500">Qualifying nouns to frame conclusions reasonably rather than final.</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 mb-6">Hedging adjectives help shape how your findings, results, and limitations are understood.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">possible</span>
+                            <p class="text-xs text-slate-500 mb-2">Can happen or be true; not ruled out.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"One <strong>possible</strong> explanation is that students need more practice time."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">likely</span>
+                            <p class="text-xs text-slate-500 mb-2">Expected; having a good chance of being true.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"The most <strong>likely</strong> cause of improvement is regular practice."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">probable</span>
+                            <p class="text-xs text-slate-500 mb-2">Very likely; supported by strong non-conclusive evidence.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"A <strong>probable</strong> reason is greater exposure to reading materials."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">potential</span>
+                            <p class="text-xs text-slate-500 mb-2">Capable of developing; not yet realized.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"Results highlight several <strong>potential</strong> directions for future research."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">plausible</span>
+                            <p class="text-xs text-slate-500 mb-2">Reasonable and believable though not proven.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"The most <strong>plausible</strong> interpretation is skill transfer."</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <span class="inline-block px-3 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-2">apparent</span>
+                            <p class="text-xs text-slate-500 mb-2">Clearly visible; seeming to be true.</p>
+                            <p class="text-sm font-serif italic text-slate-800 border-l-2 border-teal-500 pl-3">"There is an <strong>apparent</strong> gap between recognizing forms and using them."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- IMPORTANCE OF HEDGING SECTION -->
+            <div class="mt-16">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900"><i class="fa-solid fa-lightbulb mr-2 text-amber-500" aria-hidden="true"></i>7 Key Reasons Why Hedging Matters</h3>
+                    <p class="text-slate-600 mt-2">Transforming basic assertions into scholarly, defensible discourse.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">1</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Builds Credibility & Trust</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Demonstrates intellectual honesty by acknowledging evidence limits and potential exceptions, encouraging reader trust.
+                        </p>
+                    </div>
+                    <!-- 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">2</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Strengthens Defensibility</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Prevents a single counterexample from invalidating your claim by defining reasonable operational boundaries.
+                        </p>
+                    </div>
+                    <!-- 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">3</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Matches Language to Evidence</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Aligns precision of word choice with exact confidence levels—from possible to probable to highly likely.
+                        </p>
+                    </div>
+                    <!-- 4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">4</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Enhances Reader Respect</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Adopts a collaborative tone inviting reader dialogue ("Here is what seems reasonable") rather than lecturing.
+                        </p>
+                    </div>
+                    <!-- 5 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">5</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Prevents Overgeneralization</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Protects against sweeping statements like "All students struggle" when data shows "Many students may struggle."
+                        </p>
+                    </div>
+                    <!-- 6 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">6</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Reflects Scholarly Identity</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Serves as a hallmark marker of academic maturity, recognizing that scientific knowledge evolves through debate.
+                        </p>
+                    </div>
+                    <!-- 7 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition md:col-span-2 lg:col-span-1">
+                        <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold mb-4">7</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Openness to Discovery</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Leaves constructive room for new findings to refine existing claims without destroying previous foundations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRACTICE HUB SECTION -->
+    <section id="practice" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-teal-600 font-bold uppercase tracking-wider text-xs">Interactive Exercises</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mt-1"><i class="fa-solid fa-pen-to-square mr-2 text-teal-600" aria-hidden="true"></i>Interactive Practice Hub</h2>
+                <p class="text-slate-600 mt-2">Test your hedging skills across all 4 categories with instant automated scoring & feedback.</p>
+            </div>
+
+            <div class="space-y-12">
+
+                <!-- ACTIVITY 1: MODAL VERBS -->
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-lg uppercase">Activity 1</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">Modal Verbs — "Match the Certainty"</h3>
+                            <p class="text-sm text-slate-600">Select the correct hedged rewrite using the designated modal verb.</p>
+                        </div>
+                        <button onclick="checkActivity1()" class="px-5 py-2.5 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition shadow">
+                            <i class="fa-solid fa-check-circle mr-2"></i> Check Activity 1
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="act1-container">
+                        <!-- Questions JS Rendered -->
+                    </div>
+                    <div id="act1-score" class="mt-4 p-4 rounded-xl hidden text-center font-bold text-lg"></div>
+                </div>
+
+                <!-- ACTIVITY 2: LEXICAL VERBS -->
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <div>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-bold rounded-lg uppercase">Activity 2</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">Lexical Verbs — Replace with Cautious Verbs</h3>
+                            <p class="text-sm text-slate-600">Select the most appropriate cautious verb: <em>suggest, indicate, appear, seem, imply, tend to</em>.</p>
+                        </div>
+                        <button onclick="checkActivity2()" class="px-5 py-2.5 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition shadow">
+                            <i class="fa-solid fa-check-circle mr-2"></i> Check Activity 2
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="act2-container">
+                        <!-- Questions JS Rendered -->
+                    </div>
+                    <div id="act2-score" class="mt-4 p-4 rounded-xl hidden text-center font-bold text-lg"></div>
+                </div>
+
+                <!-- ACTIVITY 3: ADVERBS -->
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <div>
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg uppercase">Activity 3</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">Adverbs — Choose the Right Adverb</h3>
+                            <p class="text-sm text-slate-600">Select the adverb that best matches the strength of evidence described.</p>
+                        </div>
+                        <button onclick="checkActivity3()" class="px-5 py-2.5 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition shadow">
+                            <i class="fa-solid fa-check-circle mr-2"></i> Check Activity 3
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="act3-container">
+                        <!-- Questions JS Rendered -->
+                    </div>
+                    <div id="act3-score" class="mt-4 p-4 rounded-xl hidden text-center font-bold text-lg"></div>
+                </div>
+
+                <!-- ACTIVITY 4: ADJECTIVES -->
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <div>
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-lg uppercase">Activity 4</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">Adjectives — Conclusion Builder</h3>
+                            <p class="text-sm text-slate-600">Complete conclusion statements with: <em>possible, likely, potential, plausible, apparent, probable</em>.</p>
+                        </div>
+                        <button onclick="checkActivity4()" class="px-5 py-2.5 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition shadow">
+                            <i class="fa-solid fa-check-circle mr-2"></i> Check Activity 4
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="act4-container">
+                        <!-- Questions JS Rendered -->
+                    </div>
+                    <div id="act4-score" class="mt-4 p-4 rounded-xl hidden text-center font-bold text-lg"></div>
+                </div>
+
+                <!-- FINAL ACTIVITY: PARAGRAPH MAKEOVER & ANALYZER -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 sm:p-8 rounded-3xl shadow-xl">
+                    <div class="max-w-3xl mb-6">
+                        <span class="px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-bold rounded-lg uppercase border border-amber-400/30">Final Mastery Task</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold mt-2"><i class="fa-solid fa-pen-to-square mr-2 text-teal-400" aria-hidden="true"></i>Paragraph Makeover & Live Analyzer</h3>
+                        <p class="text-slate-300 text-sm mt-1">
+                            Rewrite an argumentative paragraph on <em>"The value of integrating hedging instruction into English language courses"</em> meeting all academic requirements.
+                        </p>
+                    </div>
+
+                    <!-- Before & After Reference -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-xs">
+                        <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
+                            <span class="font-bold text-red-400 uppercase tracking-wider block mb-1"><i class="fa-solid fa-circle-xmark mr-1" aria-hidden="true"></i>Unhedged (Before Example)</span>
+                            <p class="text-slate-300 font-serif italic">"Students do not know how to use hedging. Reading improves writing completely. Hedging is the only way to write well."</p>
+                        </div>
+                        <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
+                            <span class="font-bold text-emerald-400 uppercase tracking-wider block mb-1"><i class="fa-solid fa-circle-check mr-1" aria-hidden="true"></i>Hedged (After Example)</span>
+                            <p class="text-slate-300 font-serif italic">"Many students <strong>appear</strong> to recognize hedging forms but <strong>may</strong> not use them consistently. Reading <strong>generally</strong> supports writing development, though improvement <strong>likely</strong> depends on factors. Hedging is <strong>potentially</strong> one of the most valuable skills."</p>
+                        </div>
+                    </div>
+
+                    <!-- Requirements checklist -->
+                    <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 mb-6">
+                        <h4 class="text-sm font-bold text-teal-400 mb-3"><i class="fa-solid fa-list-check mr-1" aria-hidden="true"></i>Real-Time Checklist & Criteria:</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center text-xs">
+                            <div id="req-words" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="block font-bold text-slate-400">Word Count</span>
+                                <span id="count-words" class="text-lg font-extrabold text-white">0 / 150-200</span>
+                            </div>
+                            <div id="req-modal" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="block font-bold text-slate-400">Modal Verbs</span>
+                                <span id="count-modal" class="text-lg font-extrabold text-white">0 / 2 min</span>
+                            </div>
+                            <div id="req-lexical" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="block font-bold text-slate-400">Lexical Verbs</span>
+                                <span id="count-lexical" class="text-lg font-extrabold text-white">0 / 2 min</span>
+                            </div>
+                            <div id="req-adverbs" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="block font-bold text-slate-400">Adverbs</span>
+                                <span id="count-adverbs" class="text-lg font-extrabold text-white">0 / 3 min</span>
+                            </div>
+                            <div id="req-adjectives" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 col-span-2 sm:col-span-1">
+                                <span class="block font-bold text-slate-400">Adjectives</span>
+                                <span id="count-adjectives" class="text-lg font-extrabold text-white">0 / 2 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paragraph Text Area -->
+                    <div class="space-y-4">
+                        <textarea id="paragraph-input" oninput="analyzeParagraph()" rows="6" placeholder="Write your 150-200 word hedged paragraph here. Integrate modals (may, might...), lexical verbs (suggest, indicate...), adverbs (generally, likely...), and adjectives (possible, plausible)..." class="w-full bg-slate-950 text-slate-100 p-4 rounded-2xl border border-slate-700 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none text-sm font-sans leading-relaxed custom-scrollbar"></textarea>
+
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <button onclick="insertSampleParagraph()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1 text-teal-400"></i> Insert Model Paragraph
+                            </button>
+                            <div id="paragraph-status" class="text-xs font-bold text-amber-400">
+                                Keep typing to meet requirements...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSESSMENTS & CERTIFICATE SECTION -->
+    <section id="assessments" class="py-16 bg-slate-900 text-white border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-teal-400 font-bold uppercase tracking-wider text-xs">Evaluation Suite</span>
+                <h2 class="text-3xl font-extrabold sm:text-4xl mt-1"><i class="fa-solid fa-clipboard-check mr-2" aria-hidden="true"></i>Comprehensive HEDGE Assessment</h2>
+                <p class="text-slate-400 mt-2">Complete the 10-question evaluation to unlock your official badge.</p>
+            </div>
+
+            <!-- Quiz Container -->
+            <div class="max-w-3xl mx-auto bg-slate-950 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl">
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-xs font-semibold text-slate-400 mb-2">
+                        <span>Assessment Progress</span>
+                        <span id="quiz-progress-text">Question 1 of 10</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                        <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-400 transition-all duration-300 w-[10%]"></div>
+                    </div>
+                </div>
+
+                <!-- Questions Area -->
+                <div id="quiz-box">
+                    <!-- Dynamic Question Content -->
+                </div>
+
+                <!-- Result & Badge Section -->
+                <div id="quiz-result" class="hidden text-center py-6 space-y-6">
+                    <div id="badge-card" class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 border-2 border-amber-400/60 p-8 rounded-3xl shadow-2xl relative overflow-hidden inline-block max-w-md w-full">
+                        <div class="absolute -right-10 -top-10 w-32 h-32 bg-amber-400/10 rounded-full blur-xl"></div>
+                        <div class="w-20 h-20 bg-amber-400 text-slate-950 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-amber-400/20">
+                            <i class="fa-solid fa-award" aria-hidden="true"></i>
+                        </div>
+                        <span class="px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-extrabold rounded-full uppercase border border-amber-400/30">Official Credential</span>
+                        <h3 class="text-2xl font-black tracking-wide text-white mt-3">HEDGE Certified Writer</h3>
+                        <p class="text-xs text-slate-300 mt-1">Helping Expressions Develop Growth in Effective Writing</p>
+                        <div class="my-4 border-t border-b border-slate-800 py-3 text-xs text-slate-400 space-y-1">
+                            <p>Awarded for Academic Writing Precision</p>
+                            <p class="text-teal-400 font-bold" id="badge-score-text">Score: 10/10 (100%)</p>
+                        </div>
+                        <p class="text-[10px] text-slate-500">Mindoro State University – Calapan City Campus</p>
+                    </div>
+
+                    <div>
+                        <button onclick="resetQuiz()" class="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl transition shadow-lg">
+                            <i class="fa-solid fa-rotate-right mr-2"></i> Retake Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION (CTA) -->
+    <section class="py-16 bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-4"><i class="fa-solid fa-rocket mr-2" aria-hidden="true"></i>Ready to Write with Precision & Confidence?</h2>
+            
+            <!-- Quote -->
+            <blockquote class="text-lg sm:text-xl font-serif italic bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 max-w-2xl mx-auto mb-8 shadow-lg">
+                "Hedging is not saying you don't know — it is showing you know exactly where your knowledge ends."
+            </blockquote>
+
+            <!-- Quick Action Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 text-left">
+                <a href="#lessons" class="aspect-square sm:aspect-auto p-3 sm:p-4 bg-white/10 rounded-2xl hover:bg-white/20 transition border border-white/20 flex flex-col items-start justify-center gap-2 sm:flex-row sm:justify-start">
+                    <i class="fa-solid fa-circle-check text-xl sm:text-2xl text-emerald-300" aria-hidden="true"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">Start Lessons</h4>
+                        <p class="text-[10px] sm:text-xs text-teal-100">Master all four categories step-by-step</p>
+                    </div>
+                </a>
+                <a href="#practice" class="aspect-square sm:aspect-auto p-3 sm:p-4 bg-white/10 rounded-2xl hover:bg-white/20 transition border border-white/20 flex flex-col items-start justify-center gap-2 sm:flex-row sm:justify-start">
+                    <i class="fa-solid fa-circle-check text-xl sm:text-2xl text-emerald-300" aria-hidden="true"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">Practice Daily</h4>
+                        <p class="text-[10px] sm:text-xs text-teal-100">Complete exercises with instant checking</p>
+                    </div>
+                </a>
+                <a href="#assessments" class="aspect-square sm:aspect-auto p-3 sm:p-4 bg-white/10 rounded-2xl hover:bg-white/20 transition border border-white/20 flex flex-col items-start justify-center gap-2 sm:flex-row sm:justify-start">
+                    <i class="fa-solid fa-circle-check text-xl sm:text-2xl text-emerald-300" aria-hidden="true"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">Earn Badge</h4>
+                        <p class="text-[10px] sm:text-xs text-teal-100">Unlock your Certified Writer badge</p>
+                    </div>
+                </a>
+                <a href="#practice" class="aspect-square sm:aspect-auto p-3 sm:p-4 bg-white/10 rounded-2xl hover:bg-white/20 transition border border-white/20 flex flex-col items-start justify-center gap-2 sm:flex-row sm:justify-start">
+                    <i class="fa-solid fa-circle-check text-xl sm:text-2xl text-emerald-300" aria-hidden="true"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">Apply in Essays</h4>
+                        <p class="text-[10px] sm:text-xs text-teal-100">Elevate your academic paper tone</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-slate-800">
+                <!-- Col 1 -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-3">
+                        <i class="fa-solid fa-house text-2xl text-teal-400" aria-hidden="true"></i>
+                        <span class="font-extrabold text-xl text-white tracking-wider">HEDGE</span>
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-400">
+                        Helping Expressions Develop Growth in Effective Writing.<br>
+                        An Interactive Web-Based Instructional Material for scholarly writing excellence.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Academic Credits</h4>
+                    <p class="text-xs leading-relaxed text-slate-400">
+                        <strong>Developed by:</strong> AB English Language Students<br>
+                        <strong>Institution:</strong> Mindoro State University – Calapan City Campus<br>
+                        <strong>Academic Year:</strong> 2026–2027
+                    </p>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contact & References</h4>
+                    <p class="text-xs text-slate-400 mb-2">
+                        <i class="fa-solid fa-envelope mr-2 text-teal-400"></i>
+                        <a href="mailto:ramossaphiaolinda@gmail.com" class="hover:text-teal-300 transition">ramossaphiaolinda@gmail.com</a>
+                    </p>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        <strong>References:</strong> Hyland (1998), Lakoff (1973), and related studies in academic hedging devices.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>© 2026 HEDGE — All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0">Mindoro State University – Calapan City Campus</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // --- COLOR THEME ---
+        function setTheme(theme) {
+            document.documentElement.dataset.theme = theme;
+            localStorage.setItem('hedge-theme', theme);
+
+            const isDark = theme === 'dark';
+            const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+            document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+                button.setAttribute('aria-label', label);
+                button.setAttribute('title', label);
+                button.setAttribute('aria-pressed', String(isDark));
+                const toggleText = button.querySelector('.theme-toggle-label');
+                if (toggleText) toggleText.textContent = isDark ? 'Dark' : 'Light';
+                const icon = button.querySelector('.theme-toggle-thumb i');
+                if (icon) {
+                    icon.className = `fa-solid ${isDark ? 'fa-moon' : 'fa-sun'} text-[9px]`;
+                }
+            });
+        }
+
+        const savedTheme = localStorage.getItem('hedge-theme');
+        setTheme(savedTheme === 'dark' ? 'dark' : 'light');
+        document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+            button.addEventListener('click', () => {
+                const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                setTheme(nextTheme);
+            });
+        });
+
+        // --- MOBILE MENU TOGGLE ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('open');
+            mobileMenu.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('block'));
+
+            // Reset tab button states
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-200');
+            });
+
+            // Activate selected tab
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            document.getElementById(`content-${tabId}`).classList.add('block');
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-200');
+            activeBtn.classList.add('bg-teal-600', 'text-white');
+        }
+
+        // --- DATA & RENDER FOR ACTIVITIES ---
+
+        // Activity 1 Data
+        const act1Data = [
+            { id: 1, sentence: "Hedging improves writing grades.", modal: "may", correct: "Hedging may improve writing grades." },
+            { id: 2, sentence: "All learners benefit from regular feedback.", modal: "might", correct: "All learners might benefit from regular feedback." },
+            { id: 3, sentence: "Limited practice causes uncertainty in writing.", modal: "could", correct: "Limited practice could cause uncertainty in writing." },
+            { id: 4, sentence: "Explicit instruction changes how students write.", modal: "would likely", correct: "Explicit instruction would likely change how students write." },
+            { id: 5, sentence: "These skills help in future professional roles.", modal: "can", correct: "These skills can help in future professional roles." },
+            { id: 6, sentence: "Consistent practice leads to better performance.", modal: "should", correct: "Consistent practice should lead to better performance." },
+            { id: 7, sentence: "Every student finds hedging challenging at first.", modal: "may", correct: "Every student may find hedging challenging at first." },
+            { id: 8, sentence: "Additional reading time explains vocabulary growth.", modal: "could", correct: "Additional reading time could explain vocabulary growth." },
+            { id: 9, sentence: "Writing instruction methods need updating.", modal: "might", correct: "Writing instruction methods might need updating." },
+            { id: 10, sentence: "Clear guidelines improve assignment quality.", modal: "would", correct: "Clear guidelines would improve assignment quality." },
+            { id: 11, sentence: "Peer feedback influences writing confidence.", modal: "may", correct: "Peer feedback may influence writing confidence." },
+            { id: 12, sentence: "Lack of examples slows skill development.", modal: "can", correct: "Lack of examples can slow skill development." },
+            { id: 13, sentence: "Students develop personal style over time.", modal: "should", correct: "Students should develop personal style over time." },
+            { id: 14, sentence: "Curriculum changes address these gaps.", modal: "could", correct: "Curriculum changes could address these gaps." },
+            { id: 15, sentence: "Further research reveals additional patterns.", modal: "might", correct: "Further research might reveal additional patterns." }
+        ];
+
+        // Render Activity 1
+        function renderAct1() {
+            const container = document.getElementById('act1-container');
+            container.innerHTML = act1Data.map(q => `
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 text-xs shadow-sm">
+                    <p class="font-bold text-slate-800 mb-1">${q.id}. "${q.sentence}"</p>
+                    <p class="text-slate-500 mb-2">Modal Target: <span class="font-semibold text-teal-600">(${q.modal})</span></p>
+                    <select id="act1-ans-${q.id}" class="w-full p-2 bg-slate-50 rounded-xl border border-slate-300 focus:ring-1 focus:ring-teal-500 outline-none text-slate-700 font-medium">
+                        <option value="">-- Select Rewritten Sentence --</option>
+                        <option value="${q.correct}">${q.correct}</option>
+                        <option value="Incorrect 1">${q.sentence.replace('improves', 'definitely improves')}</option>
+                        <option value="Incorrect 2">${q.sentence} (Unhedged)</option>
+                    </select>
+                    <div id="act1-feedback-${q.id}" class="mt-2 text-[11px] font-bold hidden"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkActivity1() {
+            let score = 0;
+            act1Data.forEach(q => {
+                const userVal = document.getElementById(`act1-ans-${q.id}`).value;
+                const fb = document.getElementById(`act1-feedback-${q.id}`);
+                fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+                if (userVal === q.correct) {
+                    score++;
+                    fb.innerHTML = '<i class="fa-solid fa-circle-check mr-1" aria-hidden="true"></i>Correct';
+                    fb.classList.add('text-emerald-600');
+                } else {
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1" aria-hidden="true"></i>Answer: "${q.correct}"`;
+                    fb.classList.add('text-red-600');
+                }
+            });
+
+            const scoreBox = document.getElementById('act1-score');
+            scoreBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-emerald-100', 'text-emerald-800');
+            scoreBox.innerHTML = `Activity 1 Score: ${score} / ${act1Data.length}`;
+            scoreBox.classList.add(score >= 10 ? 'bg-emerald-100' : 'bg-amber-100', score >= 10 ? 'text-emerald-800' : 'text-amber-800');
+        }
+
+        // Activity 2 Data
+        const act2Data = [
+            { id: 1, sentence: "The data show a clear difference between the two groups.", correct: "indicate" },
+            { id: 2, sentence: "Results prove that practice improves performance.", correct: "suggest" },
+            { id: 3, sentence: "It looks like students need more guided practice.", correct: "appears" },
+            { id: 4, sentence: "These findings mean further investigation is necessary.", correct: "imply" },
+            { id: 5, sentence: "Experienced writers usually vary their vocabulary choices.", correct: "tend to" },
+            { id: 6, sentence: "The scores show steady improvement over the semester.", correct: "indicate" },
+            { id: 7, sentence: "Learners give the impression of understanding the concepts but not applying them.", correct: "seem to" },
+            { id: 8, sentence: "The comparison shows consistent patterns across sections.", correct: "suggests" },
+            { id: 9, sentence: "Feedback points to a need for clearer examples.", correct: "indicates" },
+            { id: 10, sentence: "Writers generally become more confident with experience.", correct: "tend to" },
+            { id: 11, sentence: "The trends show a gradual shift in writing style.", correct: "indicate" },
+            { id: 12, sentence: "Responses make it clear that time management is a concern.", correct: "suggest" },
+            { id: 13, sentence: "It appears to be true that shorter assignments increase engagement.", correct: "appears" },
+            { id: 14, sentence: "The connections lead to the conclusion that practice builds fluency.", correct: "imply" },
+            { id: 15, sentence: "Strong performers often use more varied sentence structures.", correct: "tend to" }
+        ];
+
+        function renderAct2() {
+            const container = document.getElementById('act2-container');
+            const options = ["suggest", "suggests", "indicate", "indicates", "appears", "seem to", "imply", "tend to"];
+
+            container.innerHTML = act2Data.map(q => `
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 text-xs shadow-sm">
+                    <p class="font-bold text-slate-800 mb-2">${q.id}. "${q.sentence}"</p>
+                    <select id="act2-ans-${q.id}" class="w-full p-2 bg-slate-50 rounded-xl border border-slate-300 focus:ring-1 focus:ring-teal-500 outline-none text-slate-700 font-medium">
+                        <option value="">-- Choose Cautious Verb --</option>
+                        ${options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                    </select>
+                    <div id="act2-feedback-${q.id}" class="mt-2 text-[11px] font-bold hidden"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkActivity2() {
+            let score = 0;
+            act2Data.forEach(q => {
+                const userVal = document.getElementById(`act2-ans-${q.id}`).value;
+                const fb = document.getElementById(`act2-feedback-${q.id}`);
+                fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+                if (userVal === q.correct) {
+                    score++;
+                    fb.innerHTML = '<i class="fa-solid fa-circle-check mr-1" aria-hidden="true"></i>Correct';
+                    fb.classList.add('text-emerald-600');
+                } else {
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1" aria-hidden="true"></i>Correct choice: "${q.correct}"`;
+                    fb.classList.add('text-red-600');
+                }
+            });
+
+            const scoreBox = document.getElementById('act2-score');
+            scoreBox.classList.remove('hidden');
+            scoreBox.innerHTML = `Activity 2 Score: ${score} / ${act2Data.length}`;
+            scoreBox.className = `mt-4 p-4 rounded-xl text-center font-bold text-lg ${score >= 10 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`;
+        }
+
+        // Activity 3 Data
+        const act3Data = [
+            { id: 1, desc: "Strong evidence from multiple studies", sentence: "The approach is _______ effective.", correct: "likely", opts: ["likely", "possibly"] },
+            { id: 2, desc: "Mixed results from small-scale studies", sentence: "The approach is _______ effective.", correct: "possibly", opts: ["possibly", "generally"] },
+            { id: 3, desc: "Widely observed trend across many groups", sentence: "_______ speaking, the method produces results.", correct: "Generally", opts: ["Generally", "Perhaps"] },
+            { id: 4, desc: "No direct evidence, just theoretical idea", sentence: "The approach is _______ beneficial.", correct: "potentially", opts: ["potentially", "definitely"] },
+            { id: 5, desc: "Consistent pattern in most but not all cases", sentence: "Students _______ improve with practice.", correct: "typically", opts: ["typically", "certainly"] },
+            { id: 6, desc: "High probability based on preliminary data", sentence: "Increased exposure will _______ help.", correct: "likely", opts: ["likely", "perhaps"] },
+            { id: 7, desc: "Common observation but not universal rule", sentence: "Feedback _______ leads to better drafts.", correct: "often", opts: ["often", "always"] },
+            { id: 8, desc: "Reasonable alternative explanation", sentence: "_______ time constraints limit practice opportunities.", correct: "Perhaps", opts: ["Probably", "Perhaps"] },
+            { id: 9, desc: "Possible but not confirmed", sentence: "Additional support is _______ needed.", correct: "possibly", opts: ["possibly", "clearly"] },
+            { id: 10, desc: "Expected outcome under normal conditions", sentence: "Explicit instruction will _______ make a difference.", correct: "probably", opts: ["probably", "never"] },
+            { id: 11, desc: "Emerging possibility", sentence: "These skills are _______ transferable to other courses.", correct: "potentially", opts: ["potentially", "completely"] },
+            { id: 12, desc: "Characteristic feature of academic writing", sentence: "Scholarly discourse _______ includes hedging.", correct: "typically", opts: ["typically", "rarely"] },
+            { id: 13, desc: "Plausible but not proven", sentence: "The observed gap is _______ due to limited exposure.", correct: "likely", opts: ["likely", "surely"] },
+            { id: 14, desc: "Broad tendency", sentence: "_______, more reading correlates with better writing.", correct: "Generally", opts: ["Generally", "Actually"] },
+            { id: 15, desc: "Tentative suggestion", sentence: "_______ assessment methods should be reviewed.", correct: "Perhaps", opts: ["Perhaps", "Clearly"] }
+        ];
+
+        function renderAct3() {
+            const container = document.getElementById('act3-container');
+            container.innerHTML = act3Data.map(q => `
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 text-xs shadow-sm">
+                    <p class="text-slate-500 font-medium mb-1">Context: ${q.desc}</p>
+                    <p class="font-bold text-slate-800 mb-2">${q.id}. "${q.sentence}"</p>
+                    <div class="flex gap-4">
+                        ${q.opts.map(opt => `
+                            <label class="flex items-center space-x-1 cursor-pointer">
+                                <input type="radio" name="act3-${q.id}" value="${opt}" class="text-teal-600 focus:ring-teal-500">
+                                <span class="font-semibold text-slate-700">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div id="act3-feedback-${q.id}" class="mt-2 text-[11px] font-bold hidden"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkActivity3() {
+            let score = 0;
+            act3Data.forEach(q => {
+                const selected = document.querySelector(`input[name="act3-${q.id}"]:checked`);
+                const userVal = selected ? selected.value : '';
+                const fb = document.getElementById(`act3-feedback-${q.id}`);
+                fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+                if (userVal === q.correct) {
+                    score++;
+                    fb.innerHTML = '<i class="fa-solid fa-circle-check mr-1" aria-hidden="true"></i>Correct';
+                    fb.classList.add('text-emerald-600');
+                } else {
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1" aria-hidden="true"></i>Correct: "${q.correct}"`;
+                    fb.classList.add('text-red-600');
+                }
+            });
+
+            const scoreBox = document.getElementById('act3-score');
+            scoreBox.classList.remove('hidden');
+            scoreBox.innerHTML = `Activity 3 Score: ${score} / ${act3Data.length}`;
+            scoreBox.className = `mt-4 p-4 rounded-xl text-center font-bold text-lg ${score >= 10 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`;
+        }
+
+        // Activity 4 Data
+        const act4Data = [
+            { id: 1, sentence: "One _______ limitation of this study is the size of the respondent group.", correct: "possible" },
+            { id: 2, sentence: "The most _______ explanation is that students need more consistent practice.", correct: "likely" },
+            { id: 3, sentence: "Further research should explore these _______ benefits in greater detail.", correct: "potential" },
+            { id: 4, sentence: "It is _______ that explicit instruction makes a meaningful difference in writing quality.", correct: "apparent" },
+            { id: 5, sentence: "A _______ next step would be to integrate hedging practice across all writing courses.", correct: "plausible" },
+            { id: 6, sentence: "One _______ challenge involves identifying the most effective teaching sequence.", correct: "possible" },
+            { id: 7, sentence: "The _______ cause of inconsistency is limited familiarity with varied forms.", correct: "probable" },
+            { id: 8, sentence: "There is an _______ need for more examples drawn from students’ own fields of study.", correct: "apparent" },
+            { id: 9, sentence: "These findings suggest a _______ connection between reading habits and hedging use.", correct: "likely" },
+            { id: 10, sentence: "The most _______ solution combines regular practice with immediate feedback.", correct: "plausible" },
+            { id: 11, sentence: "Several _______ interpretations deserve consideration.", correct: "possible" },
+            { id: 12, sentence: "The _______ impact of these changes will become clearer over time.", correct: "potential" },
+            { id: 13, sentence: "It is _______ that early exposure yields greater confidence later on.", correct: "probable" },
+            { id: 14, sentence: "A _______ factor is the amount of time spent analyzing model essays.", correct: "likely" },
+            { id: 15, sentence: "The _______ advantages include improved credibility and stronger arguments.", correct: "potential" }
+        ];
+
+        function renderAct4() {
+            const container = document.getElementById('act4-container');
+            const adjOptions = ["possible", "likely", "potential", "plausible", "apparent", "probable"];
+
+            container.innerHTML = act4Data.map(q => `
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 text-xs shadow-sm">
+                    <p class="font-bold text-slate-800 mb-2">${q.id}. "${q.sentence}"</p>
+                    <select id="act4-ans-${q.id}" class="w-full p-2 bg-slate-50 rounded-xl border border-slate-300 focus:ring-1 focus:ring-teal-500 outline-none text-slate-700 font-medium">
+                        <option value="">-- Choose Adjective --</option>
+                        ${adjOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                    </select>
+                    <div id="act4-feedback-${q.id}" class="mt-2 text-[11px] font-bold hidden"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkActivity4() {
+            let score = 0;
+            act4Data.forEach(q => {
+                const userVal = document.getElementById(`act4-ans-${q.id}`).value;
+                const fb = document.getElementById(`act4-feedback-${q.id}`);
+                fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+                if (userVal === q.correct) {
+                    score++;
+                    fb.innerHTML = '<i class="fa-solid fa-circle-check mr-1" aria-hidden="true"></i>Correct';
+                    fb.classList.add('text-emerald-600');
+                } else {
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1" aria-hidden="true"></i>Correct choice: "${q.correct}"`;
+                    fb.classList.add('text-red-600');
+                }
+            });
+
+            const scoreBox = document.getElementById('act4-score');
+            scoreBox.classList.remove('hidden');
+            scoreBox.innerHTML = `Activity 4 Score: ${score} / ${act4Data.length}`;
+            scoreBox.className = `mt-4 p-4 rounded-xl text-center font-bold text-lg ${score >= 10 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`;
+        }
+
+        // --- PARAGRAPH MAKEOVER REAL-TIME CHECKER ---
+        const listModals = ["may", "might", "could", "can", "should", "would"];
+        const listLexical = ["suggest", "suggests", "indicate", "indicates", "appear", "appears", "seem", "seems", "imply", "implies", "tend", "tends"];
+        const listAdverbs = ["generally", "typically", "often", "probably", "possibly", "perhaps", "likely", "potentially"];
+        const listAdjectives = ["possible", "likely", "probable", "potential", "plausible", "apparent"];
+
+        function analyzeParagraph() {
+            const text = document.getElementById('paragraph-input').value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+
+            const lower = text.toLowerCase();
+
+            // Count occurrences
+            const countCat = (list) => {
+                let cnt = 0;
+                list.forEach(item => {
+                    const regex = new RegExp(`\\b${item}\\b`, 'gi');
+                    const matches = lower.match(regex);
+                    if (matches) cnt += matches.length;
+                });
+                return cnt;
+            };
+
+            const modals = countCat(listModals);
+            const lexical = countCat(listLexical);
+            const adverbs = countCat(listAdverbs);
+            const adjectives = countCat(listAdjectives);
+
+            // Update UI Counters
+            document.getElementById('count-words').innerText = `${words} / 150-200`;
+            document.getElementById('count-modal').innerText = `${modals} / 2 min`;
+            document.getElementById('count-lexical').innerText = `${lexical} / 2 min`;
+            document.getElementById('count-adverbs').innerText = `${adverbs} / 3 min`;
+            document.getElementById('count-adjectives').innerText = `${adjectives} / 2 min`;
+
+            // Validate Requirements
+            const validWords = words >= 150 && words <= 200;
+            const validModals = modals >= 2;
+            const validLexical = lexical >= 2;
+            const validAdverbs = adverbs >= 3;
+            const validAdjectives = adjectives >= 2;
+
+            const status = document.getElementById('paragraph-status');
+            if (validWords && validModals && validLexical && validAdverbs && validAdjectives) {
+                status.innerHTML = '<i class="fa-solid fa-circle-check mr-1" aria-hidden="true"></i>Outstanding! All paragraph makeover requirements satisfied!';
+                status.className = "text-xs font-bold text-emerald-400";
+            } else {
+                status.innerText = "Keep adjusting to meet all 5 target criteria...";
+                status.className = "text-xs font-bold text-amber-400";
+            }
+        }
+
+        function insertSampleParagraph() {
+            const sample = "Integrating explicit hedging instruction into English language curricula appears to be a highly effective strategy for fostering scholarly writing maturity. Many learners tend to present claims as absolute facts, which may weaken the academic defensibility of their arguments. By teaching students modal verbs such as 'could' or 'might', instructors can help them indicate appropriate levels of certainty. Furthermore, regular practice with adverbs like 'generally' and 'typically' allows students to communicate plausible conclusions without overgeneralizing empirical data. This pedagogical approach potential benefit extends beyond grammar mastery; it likely builds long-term intellectual caution and credibility. Therefore, incorporating hedging devices into daily writing instruction is possibly one of the most valuable enhancements a faculty could implement. Early exposure should yield greater overall writing confidence in future scholarly discourse.";
+            
+            document.getElementById('paragraph-input').value = sample;
+            analyzeParagraph();
+        }
+
+        // --- ASSESSMENT QUIZ SYSTEM ---
+        const quizQuestions = [
+            {
+                q: "According to Hyland (1998), hedging is defined as any linguistic means used to indicate that a claim is:",
+                options: ["An absolute indisputable fact", "Not a certain truth but a plausible one", "An unverified subjective opinion", "A careless generalization"],
+                correct: 1
+            },
+            {
+                q: "Which modal verb direct signals tentative or remote possibility?",
+                options: ["must", "will", "might", "shall"],
+                correct: 2
+            },
+            {
+                q: "What category of hedging devices does the word 'suggest' belong to?",
+                options: ["Modal Verb", "Lexical Verb", "Adverb", "Adjective"],
+                correct: 1
+            },
+            {
+                q: "In the sentence 'Students typically improve with practice', 'typically' functions as a/an:",
+                options: ["Adjective", "Lexical Verb", "Adverb", "Modal Verb"],
+                correct: 2
+            },
+            {
+                q: "Which of the following is NOT a benefit of hedging?",
+                options: ["Builds credibility and academic trust", "Prevents overgeneralization", "Makes writing sound completely indecisive and weak", "Strengthens argument defensibility"],
+                correct: 2
+            },
+            {
+                q: "Which word represents a hedging adjective?",
+                options: ["plausible", "indicate", "possibly", "could"],
+                correct: 0
+            },
+            {
+                q: "Which sentence displays appropriate hedging?",
+                options: [
+                    "Reading instruction completely guarantees perfect writing scores.",
+                    "The survey results suggest a possible link between reading frequency and vocabulary range.",
+                    "All students always fail to apply lexical verbs correctly.",
+                    "Hedging devices are the only way to write well."
+                ],
+                correct: 1
+            },
+            {
+                q: "What hedging function does 'tend to' perform?",
+                options: [
+                    "Describes what happens in every single case without exception",
+                    "Describes what generally happens without claiming it occurs every time",
+                    "Signals absolute obligation",
+                    "Expresses complete certainty"
+                ],
+                correct: 1
+            },
+            {
+                q: "Why does hedging enhance persuasiveness according to research?",
+                options: [
+                    "It confuses the reader into agreeing",
+                    "It presents a collaborative tone that respects reader intelligence",
+                    "It forces readers to accept every claim",
+                    "It hides a lack of data"
+                ],
+                correct: 1
+            },
+            {
+                q: "Which hedging phrase fits best when evidence shows high probability based on data?",
+                options: ["is highly likely to", "is impossible to", "definitely will always", "never can"],
+                correct: 0
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let quizUserAnswers = [];
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[currentQuizIndex];
+            const quizBox = document.getElementById('quiz-box');
+
+            quizBox.innerHTML = `
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white">${currentQuizIndex + 1}. ${q.q}</h3>
+                    <div class="space-y-2">
+                        ${q.options.map((opt, i) => `
+                            <button onclick="selectQuizAnswer(${i})" class="w-full text-left p-3.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-teal-500 hover:bg-slate-800/80 transition text-sm text-slate-200 flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full border border-slate-700 flex items-center justify-center text-xs font-bold text-teal-400 shrink-0">${String.fromCharCode(65 + i)}</span>
+                                <span>${opt}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Update Progress Bar
+            const progPct = ((currentQuizIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${progPct}%`;
+            document.getElementById('quiz-progress-text').innerText = `Question ${currentQuizIndex + 1} of ${quizQuestions.length}`;
+        }
+
+        function selectQuizAnswer(optIndex) {
+            quizUserAnswers.push(optIndex);
+            currentQuizIndex++;
+
+            if (currentQuizIndex < quizQuestions.length) {
+                renderQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            document.getElementById('quiz-box').classList.add('hidden');
+            const resultBox = document.getElementById('quiz-result');
+            resultBox.classList.remove('hidden');
+
+            let score = 0;
+            quizUserAnswers.forEach((ans, idx) => {
+                if (ans === quizQuestions[idx].correct) score++;
+            });
+
+            const pct = Math.round((score / quizQuestions.length) * 100);
+            document.getElementById('badge-score-text').innerText = `Final Score: ${score} / ${quizQuestions.length} (${pct}%)`;
+
+            // Confetti effect if passed
+            if (pct >= 70) {
+                document.getElementById('badge-card').classList.add('animate-pulse-subtle');
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            quizUserAnswers = [];
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-box').classList.remove('hidden');
+            renderQuizQuestion();
+        }
+
+        // --- INIT ON LOAD ---
+        window.onload = function() {
+            renderAct1();
+            renderAct2();
+            renderAct3();
+            renderAct4();
+            renderQuizQuestion();
+            analyzeParagraph();
+        };
+    </script>
+</body>
+</html>
