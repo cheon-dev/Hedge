@@ -875,6 +875,21 @@
                     <div class="space-y-4">
                         <textarea id="paragraph-input" oninput="analyzeParagraph()" rows="6" placeholder="Write your 150-200 word hedged paragraph here. Integrate modals (may, might...), lexical verbs (suggest, indicate...), adverbs (generally, likely...), and adjectives (possible, plausible)..." class="w-full bg-slate-950 text-slate-100 p-4 rounded-2xl border border-slate-700 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none text-sm font-sans leading-relaxed custom-scrollbar"></textarea>
 
+                        <!-- Essay Score -->
+                        <div id="paragraph-score-box" class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Essay Score</span>
+                                <span class="text-2xl font-extrabold text-white"><span id="paragraph-score">0</span><span class="text-sm text-slate-400"> / 100</span></span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="paragraph-score-track">
+                                <div id="paragraph-score-bar" class="h-2 bg-amber-400 rounded-full transition-all duration-300" style="width:0%"></div>
+                            </div>
+                            <div class="flex items-center justify-between mt-2 text-xs">
+                                <span id="paragraph-score-label" class="font-bold text-amber-400">Start writing to see your score</span>
+                                <span class="text-slate-500">20 pts per criterion</span>
+                            </div>
+                        </div>
+
                         <div class="flex flex-wrap items-center justify-between gap-4">
                             <button onclick="insertSampleParagraph()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition">
                                 <i class="fa-solid fa-wand-magic-sparkles mr-1 text-teal-400"></i> Insert Model Paragraph
@@ -1384,6 +1399,33 @@
             const validLexical = lexical >= 2;
             const validAdverbs = adverbs >= 3;
             const validAdjectives = adjectives >= 2;
+
+            // Essay score (100 pts): 5 criteria x 20 pts, partial credit for progress
+            const ratio = (count, min) => Math.min(count / min, 1) * 20;
+            let wordPts = 0;
+            if (words >= 150 && words <= 200) wordPts = 20;
+            else if (words > 0 && words < 150) wordPts = (words / 150) * 20;
+            else if (words > 200) wordPts = Math.max(0, 20 - (words - 200) * 0.4);
+
+            const totalScore = Math.round(
+                wordPts + ratio(modals, 2) + ratio(lexical, 2) + ratio(adverbs, 3) + ratio(adjectives, 2)
+            );
+
+            let scoreLabel, scoreColor, barColor;
+            if (words === 0) { scoreLabel = 'Start writing to see your score'; scoreColor = 'text-amber-400'; barColor = 'bg-amber-400'; }
+            else if (totalScore >= 90) { scoreLabel = 'Excellent'; scoreColor = 'text-emerald-400'; barColor = 'bg-emerald-400'; }
+            else if (totalScore >= 75) { scoreLabel = 'Good'; scoreColor = 'text-teal-400'; barColor = 'bg-teal-400'; }
+            else if (totalScore >= 50) { scoreLabel = 'Developing'; scoreColor = 'text-amber-400'; barColor = 'bg-amber-400'; }
+            else { scoreLabel = 'Needs more hedging'; scoreColor = 'text-rose-400'; barColor = 'bg-rose-400'; }
+
+            document.getElementById('paragraph-score').innerText = totalScore;
+            document.getElementById('paragraph-score-track').setAttribute('aria-valuenow', totalScore);
+            const scoreBar = document.getElementById('paragraph-score-bar');
+            scoreBar.style.width = totalScore + '%';
+            scoreBar.className = `h-2 rounded-full transition-all duration-300 ${barColor}`;
+            const scoreLabelEl = document.getElementById('paragraph-score-label');
+            scoreLabelEl.innerText = scoreLabel;
+            scoreLabelEl.className = `font-bold ${scoreColor}`;
 
             const status = document.getElementById('paragraph-status');
             if (validWords && validModals && validLexical && validAdverbs && validAdjectives) {
